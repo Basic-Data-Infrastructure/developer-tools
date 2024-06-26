@@ -8,3 +8,4 @@
 .cpcache
 .nrepl-port
 *.pem
+/ishare-jwt/target/

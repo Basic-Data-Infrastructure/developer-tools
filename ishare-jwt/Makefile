@@ -5,8 +5,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-.PHONY: all lint test check clean test-certs
-
+.PHONY: all lint test check clean test-certs jar
 
 test/pem/ca.cert.pem:
 	mkdir -p test/pem
@@ -46,7 +45,14 @@ lint:
 test: test-certs
 	clojure -M:test
 
-check: lint test
-
 clean:
 	rm -rf classes target test/pem
+
+jar: clean
+	clj -T:build jar
+
+
+check: test lint outdated
+
+outdated:
+	clojure -M:outdated

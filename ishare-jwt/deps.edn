@@ -5,11 +5,15 @@
 ;;;
 ;;; SPDX-License-Identifier: AGPL-3.0-or-later
 
-{:deps {buddy/buddy-sign                 {:mvn/version "3.5.351"}}
+{:deps  {buddy/buddy-sign {:mvn/version "3.5.351"}}
  :paths ["src"]
 
  :aliases
- {:test    {:extra-deps {lambdaisland/kaocha {:mvn/version "RELEASE"}}
-            :main-opts  ["-m" "kaocha.runner"]}
-  :lint    {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
-            :main-opts  ["-m" "clj-kondo.main" "--lint" "src" "test"]}}}
+ {:test     {:extra-deps {lambdaisland/kaocha {:mvn/version "RELEASE"}}
+             :main-opts  ["-m" "kaocha.runner"]}
+  :lint     {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
+             :main-opts  ["-m" "clj-kondo.main" "--lint" "src" "test"]}
+  :build    {:deps       {io.github.clojure/tools.build {:mvn/version "0.10.4"}}
+             :ns-default build}
+  :outdated {:replace-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
+             :main-opts    ["-m" "antq.core"]}}}
