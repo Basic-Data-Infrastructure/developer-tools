@@ -208,6 +208,10 @@
                       cert-str
                       "\n-----END CERTIFICATE-----\n")))
 
+(defn decode-header
+  [token]
+  (check! ::header (jwt/decode-header token)))
+
 (defn unsign-token
   "Parse a signed token. Returns parsed data or raises exception.
 
@@ -215,7 +219,7 @@
   reason, including expiration."
   [token]
   (check! ::signed-token token)
-  (let [{:keys [x5c]} (check! ::header (jwt/decode-header token))
+  (let [{:keys [x5c]} (decode-header token)
         cert-str      (first x5c)
         pkey          (keys/public-key (cert-reader cert-str))]
     (check! ::payload (jwt/unsign token pkey {:alg :rs256 :leeway 5}))))
