@@ -5,7 +5,7 @@
 ;;;
 ;;; SPDX-License-Identifier: AGPL-3.0-or-later
 
-{:deps  {buddy/buddy-sign {:mvn/version "3.5.351"}}
+{:deps  {buddy/buddy-sign {:mvn/version "3.6.1-359"}}
  :paths ["src"]
 
  :aliases
