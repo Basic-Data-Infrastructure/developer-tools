@@ -25,15 +25,9 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/cache@v4
       with:
-        path: |
-          ./.m2
-
-        # store as today's cache
-        key: "nvd-clojure-${{ steps.date.outputs.date }}"
-        # if today's cache does not yet exist, fetch from whatever iss
-        # the most recent cache for nvd-clojure
-        # and update that
-        restore-keys: "nvd-clojure-"
+        path: "~/.m2"
+        key: "nvd-${{ steps.date.outputs.date }}"
+        restore-keys: "nvd-"
         
     - name: Install clj runtime
       run: .github/workflows/install-binaries.sh
